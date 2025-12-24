@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Red Converter - Advanced Text Transformation Suite</title>
+    <meta name="description" content="Professional red-team text transformation and steganography tool. Encode, decode, and analyze text with Base32, Base58, Base85, Braille, homoglyphs, and zero-width steganography." />
+    <meta name="theme-color" content="#0a0a0a" />
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Red Converter" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Red Converter - Advanced Text Transformation Suite" />
+    <meta property="og:description" content="Professional red-team text transformation and steganography tool with advanced encodings and analysis." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/icon-512.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@RedConverter" />
+    <meta name="twitter:image" content="/icon-512.png" />
+  </head>
+
+  <body>
+    <!-- Professional Splash Screen -->
+    <div id="splash-screen">
+      <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        #splash-screen {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: #000000;
+          transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+        }
+        
+        #splash-screen.hidden {
+          opacity: 0;
+          visibility: hidden;
+        }
+        
+        .splash-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2rem;
+        }
+        
+        /* Logo Animation */
+        .splash-logo-wrapper {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .splash-icon {
+          width: 80px;
+          height: 80px;
+          position: relative;
+          margin-bottom: 1.5rem;
+        }
+        
+        .splash-icon::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border: 3px solid transparent;
+          border-top-color: #f00707;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          filter: drop-shadow(0 0 8px rgba(240, 7, 7, 0.6));
+        }
+        
+        .splash-icon::after {
+          content: '';
+          position: absolute;
+          inset: 10px;
+          border: 3px solid transparent;
+          border-top-color: rgba(240, 7, 7, 0.6);
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite reverse;
+          filter: drop-shadow(0 0 6px rgba(240, 7, 7, 0.4));
+        }
+        
+        .splash-icon-inner {
+          position: absolute;
+          inset: 25px;
+          background: linear-gradient(135deg, #f00707, #cc0606);
+          border-radius: 50%;
+          animation: pulse-glow 2s ease-in-out infinite;
+          box-shadow: 0 0 30px rgba(240, 7, 7, 0.5), 0 0 60px rgba(240, 7, 7, 0.3);
+        }
+        
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse-glow {
+          0%, 100% { 
+            opacity: 1;
+            box-shadow: 0 0 30px rgba(240, 7, 7, 0.6), 0 0 60px rgba(240, 7, 7, 0.3), 0 0 90px rgba(240, 7, 7, 0.1);
+            transform: scale(1);
+          }
+          50% { 
+            opacity: 0.9;
+            box-shadow: 0 0 50px rgba(240, 7, 7, 0.8), 0 0 100px rgba(240, 7, 7, 0.5), 0 0 150px rgba(240, 7, 7, 0.2);
+            transform: scale(1.05);
+          }
+        }
+        
+        .splash-brand {
+          text-align: center;
+        }
+        
+        .splash-title {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: #ffffff;
+          letter-spacing: 0.3em;
+          text-transform: uppercase;
+          margin-bottom: 0.5rem;
+        }
+        
+        .splash-title span {
+          color: #f00707;
+          text-shadow: 0 0 20px rgba(240, 7, 7, 0.5), 0 0 40px rgba(240, 7, 7, 0.3);
+        }
+        
+        .splash-subtitle {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          font-size: 0.75rem;
+          font-weight: 400;
+          color: #666666;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+        }
+        
+        /* Loading Bar */
+        .splash-loader {
+          width: 200px;
+          height: 2px;
+          background: #1a1a1a;
+          border-radius: 1px;
+          overflow: hidden;
+          position: relative;
+        }
+        
+        .splash-loader-bar {
+          position: absolute;
+          height: 100%;
+          width: 40%;
+          background: linear-gradient(90deg, transparent, #f00707, transparent);
+          animation: loading 1.5s ease-in-out infinite;
+          box-shadow: 0 0 20px rgba(240, 7, 7, 0.6);
+        }
+        
+        @keyframes loading {
+          0% { left: -40%; }
+          100% { left: 100%; }
+        }
+        
+        /* Status Text */
+        .splash-status {
+          font-family: 'SF Mono', 'Fira Code', monospace;
+          font-size: 0.625rem;
+          color: #333333;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          animation: fade-status 2s ease-in-out infinite;
+        }
+        
+        @keyframes fade-status {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 1; }
+        }
+        
+        /* Corner Accents */
+        .splash-corner {
+          position: absolute;
+          width: 40px;
+          height: 40px;
+          border: 2px solid #1a1a1a;
+        }
+        
+        .splash-corner.tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+        .splash-corner.tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
+        .splash-corner.bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
+        .splash-corner.br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+        
+        /* Version */
+        .splash-version {
+          position: absolute;
+          bottom: 30px;
+          font-family: 'SF Mono', 'Fira Code', monospace;
+          font-size: 0.625rem;
+          color: #333333;
+          letter-spacing: 0.1em;
+        }
+      </style>
+      
+      <div class="splash-corner tl"></div>
+      <div class="splash-corner tr"></div>
+      <div class="splash-corner bl"></div>
+      <div class="splash-corner br"></div>
+      
+      <div class="splash-container">
+        <div class="splash-logo-wrapper">
+          <div class="splash-icon">
+            <div class="splash-icon-inner"></div>
+          </div>
+          
+          <div class="splash-brand">
+            <div class="splash-title"><span>RED</span> CONVERTER</div>
+            <div class="splash-subtitle">Text Transformation Suite</div>
+          </div>
+        </div>
+        
+        <div class="splash-loader">
+          <div class="splash-loader-bar"></div>
+        </div>
+        
+        <div class="splash-status">Initializing System</div>
+      </div>
+      
+      <div class="splash-version">v2.0</div>
+    </div>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <script>
+      // Hide splash screen when app is ready
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const splash = document.getElementById('splash-screen');
+          if (splash) {
+            splash.classList.add('hidden');
+            setTimeout(() => splash.remove(), 600);
+          }
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>

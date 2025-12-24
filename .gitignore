@@ -1,0 +1,81 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+build
+.output
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+bun-debug.log*
+
+# Lock files (optional - keep one based on your package manager)
+bun.lockb
+
+# Local environment files
+*.local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+*.sublime-workspace
+*.sublime-project
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Windows shortcuts
+*.lnk
+
+# VS files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Development/Analysis files (not needed in production)
+improvements.md
+report.md
+*.analysis.md
+
+# Testing
+coverage
+.nyc_output
+
+# Cache
+.cache
+.parcel-cache
+.turbo
+.vercel
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/

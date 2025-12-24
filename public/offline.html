@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Red Converter - Offline</title>
+    <link rel="icon" type="image/png" href="/icon-192.png" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 400px;
+      }
+
+      .icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 2rem;
+        opacity: 0.8;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: #dc2626;
+        margin-bottom: 1rem;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      p {
+        color: #888;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: rgba(220, 38, 38, 0.1);
+        border: 1px solid rgba(220, 38, 38, 0.3);
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        color: #dc2626;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        background: #dc2626;
+        border-radius: 50%;
+        animation: blink 1.5s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      button {
+        margin-top: 2rem;
+        padding: 12px 24px;
+        background: #dc2626;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      button:hover {
+        background: #b91c1c;
+        transform: translateY(-2px);
+      }
+
+      .features {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #333;
+      }
+
+      .features h3 {
+        color: #666;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 1rem;
+      }
+
+      .features ul {
+        list-style: none;
+        color: #888;
+        font-size: 0.875rem;
+      }
+
+      .features li {
+        padding: 4px 0;
+      }
+
+      .features li::before {
+        content: "✓ ";
+        color: #22c55e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <svg
+        class="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.58 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"
+        />
+      </svg>
+
+      <h1>You're Offline</h1>
+
+      <p>
+        It looks like you've lost your internet connection. But don't worry –
+        Red Converter still works!
+      </p>
+
+      <div class="status">
+        <span class="status-dot"></span>
+        Awaiting connection
+      </div>
+
+      <button onclick="location.reload()">Try Again</button>
+
+      <div class="features">
+        <h3>Available Offline</h3>
+        <ul>
+          <li>All encoding/decoding transforms</li>
+          <li>Pipeline execution</li>
+          <li>Auto-detection</li>
+          <li>Your saved history</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      // Auto-reload when back online
+      window.addEventListener("online", () => {
+        location.reload();
+      });
+    </script>
+  </body>
+</html>

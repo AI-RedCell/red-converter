@@ -1,0 +1,597 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap");
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 85% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 0 100% 60%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 70% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 10%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 12%;
+    --ring: 0 85% 50%;
+
+    --radius: 0.75rem;
+
+    --neon-red: 0 100% 50%;
+    --neon-glow: 0 0 20px hsl(0 100% 50% / 0.5), 0 0 40px hsl(0 100% 50% / 0.3),
+      0 0 60px hsl(0 100% 50% / 0.1);
+    --glass-bg: 0 0% 10% / 0.6;
+    --glass-border: 0 0% 100% / 0.1;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono antialiased;
+    background-image: radial-gradient(
+        ellipse at top,
+        hsl(0 50% 8% / 0.5) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at bottom right,
+        hsl(0 80% 10% / 0.3) 0%,
+        transparent 40%
+      );
+    min-height: 100vh;
+  }
+
+  ::selection {
+    @apply bg-primary/30 text-primary-foreground;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/40 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/60;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-xl;
+    box-shadow: 0 4px 24px hsl(0 0% 0% / 0.4),
+      inset 0 1px 0 hsl(0 0% 100% / 0.05);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    @apply border-primary/30;
+    box-shadow: 0 4px 24px hsl(0 0% 0% / 0.4),
+      0 0 30px hsl(var(--primary) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.05);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px hsl(var(--primary)),
+      0 0 20px hsl(var(--primary) / 0.8), 0 0 40px hsl(var(--primary) / 0.6);
+  }
+
+  .neon-border {
+    box-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary) / 0.5),
+      inset 0 0 5px hsl(var(--primary) / 0.2);
+  }
+
+  .neon-glow {
+    filter: drop-shadow(0 0 8px hsl(var(--primary)))
+      drop-shadow(0 0 16px hsl(var(--primary) / 0.5));
+  }
+
+  .cyber-grid {
+    background-image: linear-gradient(
+        hsl(var(--primary) / 0.03) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, hsl(var(--primary) / 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .scanline {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scanline::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 50%, hsl(0 0% 0% / 0.03) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+  }
+
+  .mode-button {
+    @apply px-6 py-3 font-semibold uppercase tracking-wider text-sm transition-all duration-300 border-2 border-transparent;
+  }
+
+  .mode-button-active {
+    @apply bg-primary text-primary-foreground border-primary neon-border;
+  }
+
+  .mode-button-inactive {
+    @apply bg-secondary/50 text-muted-foreground border-border hover:border-primary/50 hover:text-foreground;
+  }
+
+  .transform-card {
+    @apply glass-card-hover p-4 cursor-pointer select-none;
+  }
+
+  .transform-card-selected {
+    @apply border-primary/60 bg-primary/10;
+  }
+
+  .pipeline-step {
+    @apply glass-card p-3 flex items-center gap-3 transition-all duration-200;
+  }
+
+  .pipeline-step:hover {
+    @apply border-primary/40;
+  }
+
+  .input-cyber {
+    @apply bg-input/80 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all duration-200;
+  }
+
+  .badge-reversible {
+    @apply bg-success/20 text-success border border-success/30;
+  }
+
+  .badge-partial {
+    @apply bg-warning/20 text-warning border border-warning/30;
+  }
+
+  .badge-irreversible {
+    @apply bg-destructive/20 text-destructive border border-destructive/30;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Orbitron", sans-serif;
+  }
+
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      filter: drop-shadow(0 0 5px hsl(var(--primary)))
+        drop-shadow(0 0 10px hsl(var(--primary) / 0.5));
+    }
+    to {
+      filter: drop-shadow(0 0 10px hsl(var(--primary)))
+        drop-shadow(0 0 25px hsl(var(--primary) / 0.7));
+    }
+  }
+
+  @keyframes scan {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  .animate-scan {
+    animation: scan 8s linear infinite;
+  }
+}
+
+/* ===== MOBILE RESPONSIVE OVERRIDES ===== */
+
+/* Base mobile optimizations - these are safe global settings */
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
+  }
+
+  body {
+    @apply overflow-x-hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Improve touch targets for mobile */
+  button,
+  a,
+  [role="button"],
+  input,
+  textarea,
+  select {
+    @apply touch-manipulation;
+  }
+
+  /* Better focus states for touch devices */
+  @media (hover: none) {
+    button:focus,
+    a:focus,
+    [role="button"]:focus {
+      outline: none;
+    }
+
+    button:active,
+    [role="button"]:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+/* Responsive utilities */
+@layer utilities {
+  /* Safe area padding for notched devices */
+  .safe-area-top {
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+  }
+
+  .safe-area-bottom {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+
+  .safe-area-x {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  /* Touch-friendly minimum sizes */
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Mobile text scaling */
+  .text-responsive-xs {
+    @apply text-[10px] sm:text-xs;
+  }
+
+  .text-responsive-sm {
+    @apply text-xs sm:text-sm;
+  }
+
+  .text-responsive-base {
+    @apply text-sm sm:text-base;
+  }
+
+  .text-responsive-lg {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+
+  .text-responsive-xl {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+
+  .text-responsive-2xl {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+
+  /* Mobile spacing */
+  .gap-responsive {
+    @apply gap-2 sm:gap-3 md:gap-4;
+  }
+
+  .p-responsive {
+    @apply p-2 sm:p-3 md:p-4;
+  }
+
+  /* Hide scrollbar on mobile but keep functionality */
+  .scrollbar-mobile-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-mobile-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ===== BREAKPOINT-SPECIFIC STYLES ===== */
+
+/* Extra small devices (phones in portrait, < 480px) */
+@media (max-width: 479px) {
+  #root {
+    padding: 0.75rem !important;
+  }
+
+  .glass-card {
+    border-radius: 0.5rem;
+  }
+
+  /* Stack header vertically on very small screens */
+  header {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    padding: 0.75rem !important;
+  }
+
+  /* Smaller logo on mobile */
+  header img {
+    height: 2rem !important;
+  }
+
+  /* Adjust header title */
+  header h1 {
+    font-size: 1.25rem !important;
+  }
+
+  header p {
+    font-size: 0.625rem !important;
+  }
+
+  /* Mode selector buttons */
+  .mode-button,
+  [class*="px-6"][class*="py-3"] {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.625rem !important;
+  }
+
+  /* Action buttons as 2x2 grid on very small screens */
+  .flex.gap-3 > button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.625rem !important;
+  }
+
+  /* Smaller transform cards */
+  .transform-card h4 {
+    font-size: 0.75rem !important;
+  }
+
+  .transform-card p {
+    font-size: 0.625rem !important;
+    -webkit-line-clamp: 2;
+  }
+
+  /* Pipeline step compact */
+  .pipeline-step {
+    padding: 0.5rem !important;
+  }
+
+  /* Footer compact */
+  footer p {
+    font-size: 0.625rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Prevent text areas and output boxes from overflowing */
+  textarea,
+  .glass-card,
+  code,
+  pre {
+    max-width: calc(100vw - 1.5rem) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+
+  /* Ensure main containers stay within screen */
+  .max-w-7xl,
+  #root,
+  .space-y-6,
+  .space-y-4 {
+    max-width: 100vw !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Grid items should also respect width */
+  .grid > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Small devices (phones in landscape, tablets portrait, 480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+  #root {
+    padding: 1rem !important;
+  }
+
+  header {
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Transformation grid 2 columns */
+  .grid.grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Medium devices (tablets landscape, small laptops, 768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Main grid stays single column on tablets */
+  .lg\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* But transformation grid gets more columns */
+  .sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Large devices (desktops, 1024px+) */
+@media (min-width: 1024px) {
+  /* Full two-column layout */
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ===== ORIENTATION HANDLING ===== */
+
+/* Landscape mode on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  /* Reduce vertical spacing in landscape */
+  .space-y-6 > * + * {
+    margin-top: 0.75rem !important;
+  }
+
+  .space-y-4 > * + * {
+    margin-top: 0.5rem !important;
+  }
+
+  /* Smaller text areas in landscape */
+  textarea {
+    min-height: 80px !important;
+  }
+
+  /* Compact mode selector */
+  .glass-card.p-1\.5 {
+    padding: 0.25rem !important;
+  }
+
+  header {
+    padding: 0.5rem 1rem !important;
+  }
+}
+
+/* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Increase all interactive element sizes */
+  button:not(.transform-card) {
+    min-height: 44px;
+  }
+
+  /* Remove hover effects that don't work on touch */
+  .glass-card-hover:hover,
+  .transform-card:hover {
+    transform: none;
+    border-color: inherit;
+  }
+
+  /* Add active states instead */
+  .glass-card-hover:active,
+  .transform-card:active {
+    border-color: hsl(var(--primary) / 0.3);
+    transform: scale(0.98);
+  }
+
+  /* Better scrolling containers */
+  .overflow-auto,
+  .overflow-y-auto,
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ===== DARK MODE / HIGH CONTRAST ===== */
+
+@media (prefers-contrast: high) {
+  .glass-card {
+    border-width: 2px;
+    border-color: hsl(var(--border));
+  }
+
+  .text-muted-foreground {
+    color: hsl(var(--foreground) / 0.8);
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-pulse,
+  .animate-glow,
+  .animate-pulse-slow {
+    animation: none !important;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+  .glass-card {
+    background: white;
+    border: 1px solid #ccc;
+  }
+
+  .neon-text,
+  .neon-border,
+  .neon-glow {
+    text-shadow: none;
+    box-shadow: none;
+    filter: none;
+  }
+
+  .cyber-grid {
+    background-image: none;
+  }
+}
