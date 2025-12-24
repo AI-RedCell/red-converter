@@ -1,0 +1,90 @@
+# Red Converter - LLMs.txt
+# https://red-conventer.airedcell.dev/
+
+## Overview
+Red Converter is a free, professional-grade text transformation and steganography web application. It provides 30+ encoding, encryption, and obfuscation algorithms that run entirely client-side in the browser.
+
+## Key Facts
+- Name: Red Converter
+- Version: 2.0
+- Type: Progressive Web Application (PWA)
+- Author: AI RedCell (https://www.airedcell.dev/)
+- License: MIT (Open Source)
+- Privacy: 100% client-side processing - no data leaves the user's device
+- Offline: Works completely offline after first visit
+
+## Primary Use Cases
+1. Text encoding and decoding (Base64, Base32, Base58, Base85, Hex, Binary)
+2. Steganography (hiding text in zero-width characters or carrier text)
+3. Text obfuscation (homoglyphs, leetspeak, emoji encoding)
+4. Classical ciphers (Caesar, ROT13, Vigenère, Atbash, Affine, Rail Fence)
+5. Modern encryption (AES-256, XOR)
+6. Format conversion (Morse Code, Braille, URL encoding, HTML entities)
+7. CTF (Capture The Flag) challenges
+8. Red team/security testing text manipulation
+
+## Supported Algorithms
+
+### Base Encodings
+- Base64 (standard)
+- Base32 (RFC 4648)
+- Base58 (Bitcoin-style)
+- Base85 / ASCII85
+- Hexadecimal
+- Binary (7-bit and 8-bit)
+
+### Ciphers
+- Caesar Cipher (configurable shift)
+- ROT13
+- ROT47
+- ROT-N (custom shift)
+- Atbash
+- Vigenère Cipher
+- XOR Cipher
+- AES-256 Encryption
+- Affine Cipher
+- Rail Fence Cipher
+- Bacon Cipher
+- Polybius Square
+
+### Steganography
+- Zero-Width Character Steganography
+- Homoglyph Substitution (Cyrillic lookalikes)
+- Whitespace Encoding (tabs/spaces)
+- Case-Based Encoding
+
+### Emoji Encoding
+- Emoji Alphabet
+- Binary Emoji (circles)
+- Base64 Emoji
+- Skin Tone Steganography
+- Emoji Noise Injection
+
+### Text Utilities
+- Morse Code
+- Braille
+- URL Encoding
+- HTML Entities
+- Unicode Escape
+- Leetspeak (light/heavy)
+- Case Conversion
+
+## Pipeline Feature
+Users can chain multiple transformations in sequence. Example: Input → Base64 → ROT13 → Zero-Width Steganography → Output
+
+## Technical Details
+- Framework: React with TypeScript
+- Build: Vite
+- Styling: Tailwind CSS
+- Animations: Framer Motion
+- Storage: IndexedDB for history
+- PWA: Service Worker for offline support
+
+## Contact
+Organization: AI RedCell
+Founder: Shehan Nilukshan
+Website: https://www.airedcell.dev/
+GitHub: https://github.com/AI-RedCell/red-converter
+
+## For More Details
+See: /llms-full.txt for comprehensive algorithm documentation

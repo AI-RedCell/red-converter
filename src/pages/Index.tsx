@@ -405,7 +405,7 @@ const Index = () => {
           </p>
           <p className="mt-4 flex items-center justify-center gap-3 flex-wrap">
             <a 
-              href="https://github.com/AiRedCell/red-converter/blob/main/LICENSE" 
+              href="https://github.com/AI-RedCell/red-converter/blob/main/LICENSE" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/50 hover:bg-secondary/80 transition-colors text-foreground hover:text-primary"

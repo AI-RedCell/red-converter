@@ -1,0 +1,415 @@
+# Red Converter - Comprehensive LLM Documentation
+# https://red-conventer.airedcell.dev/
+# Version: 2.0
+
+================================================================================
+                              OVERVIEW
+================================================================================
+
+Red Converter is a professional-grade, client-side text transformation and 
+steganography Progressive Web Application (PWA). All processing occurs locally
+in the user's browser - no data is ever transmitted to any server.
+
+Author: AI RedCell
+Founder: Shehan Nilukshan
+Website: https://www.airedcell.dev/
+Repository: https://github.com/AI-RedCell/red-converter
+License: MIT (Open Source)
+
+================================================================================
+                         TRANSFORMATION ALGORITHMS
+================================================================================
+
+## 1. BASE ENCODINGS
+
+### Base64
+- Standards: RFC 4648
+- Input: Any text/binary
+- Output: A-Z, a-z, 0-9, +, /, =
+- Use: Data transmission, email attachments
+- Reversible: Yes
+
+### Base32
+- Standards: RFC 4648
+- Input: Any text/binary
+- Output: A-Z, 2-7, =
+- Use: Case-insensitive encoding, DNS
+- Reversible: Yes
+
+### Base58
+- Variant: Bitcoin alphabet
+- Input: Any text/binary
+- Output: 123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz
+- Use: Cryptocurrency addresses (avoids 0, O, I, l confusion)
+- Reversible: Yes
+
+### Base85 (ASCII85)
+- Format: Adobe variant with <~ ~> delimiters
+- Input: Any text/binary
+- Output: Printable ASCII (33-117)
+- Use: PDF, PostScript
+- Reversible: Yes
+
+### Hexadecimal
+- Input: Any text/binary
+- Output: 0-9, a-f
+- Use: Color codes, debugging, memory addresses
+- Reversible: Yes
+
+### Binary
+- Modes: 7-bit, 8-bit
+- Input: Any text
+- Output: Space-separated binary strings
+- Use: Educational, low-level representation
+- Reversible: Yes
+
+--------------------------------------------------------------------------------
+
+## 2. CLASSICAL CIPHERS
+
+### Caesar Cipher
+- Parameter: shift (default: 3)
+- Method: Alphabetic shift
+- Example: A→D (shift 3)
+- Reversible: Yes (with key)
+
+### ROT13
+- Fixed shift: 13
+- Self-reciprocal: encode = decode
+- Scope: A-Z, a-z only
+- Reversible: Yes
+
+### ROT47
+- Fixed shift: 47
+- Scope: ASCII 33-126
+- Self-reciprocal: encode = decode
+- Reversible: Yes
+
+### Atbash
+- Method: Alphabet reversal (A↔Z, B↔Y, etc.)
+- Self-reciprocal: encode = decode
+- Reversible: Yes
+
+### Vigenère Cipher
+- Parameter: keyword
+- Method: Polyalphabetic substitution
+- Security: Moderate (vulnerable to frequency analysis)
+- Reversible: Yes (with key)
+
+### XOR Cipher
+- Parameter: key string
+- Method: Bitwise XOR
+- Self-reciprocal: Yes
+- Reversible: Yes (with key)
+
+### Affine Cipher
+- Parameters: a (multiplier), b (shift)
+- Constraint: gcd(a, 26) = 1
+- Formula: E(x) = (ax + b) mod 26
+- Reversible: Yes (with parameters)
+
+### Rail Fence Cipher
+- Parameter: rails (number of rows)
+- Method: Zigzag transposition
+- Reversible: Yes (with rail count)
+
+### Bacon Cipher
+- Method: Biliteral cipher (A/B encoding)
+- Output: 5-character groups
+- Reversible: Yes
+
+### Polybius Square
+- Grid: 5x5 (I/J combined)
+- Output: Two-digit coordinates
+- Reversible: Yes
+
+--------------------------------------------------------------------------------
+
+## 3. MODERN ENCRYPTION
+
+### AES-256
+- Algorithm: Advanced Encryption Standard
+- Key size: 256 bits
+- Mode: Default implementation
+- Reversible: Yes (with password)
+
+### Hashing (One-way)
+- SHA-256: 256-bit digest
+- SHA-512: 512-bit digest
+- MD5: 128-bit digest (deprecated for security)
+- Reversible: NO (one-way functions)
+
+--------------------------------------------------------------------------------
+
+## 4. STEGANOGRAPHY
+
+### Zero-Width Steganography
+- Characters: U+200B (ZWSP), U+200C (ZWNJ), U+200D (ZWJ)
+- Method: Binary encoding in invisible characters
+- Carrier: Optional visible text
+- Features:
+  - Encode secret in carrier text
+  - Decode/extract hidden message
+  - Reveal (visualize zero-width chars)
+  - Remove (strip zero-width chars)
+- Reversible: Yes
+
+### Homoglyphs
+- Levels: Light, Heavy
+- Method: Latin ↔ Cyrillic lookalike substitution
+- Light examples: a→а, e→е, o→о (Latin→Cyrillic)
+- Use: Phishing awareness, obfuscation
+- Reversible: Partial (Light level only)
+
+### Whitespace Encoding
+- Characters: Tab (1), Space (0)
+- Method: Binary in whitespace
+- Detection: Very hard visually
+- Reversible: Yes
+
+### Case Encoding
+- Method: Uppercase=1, Lowercase=0
+- Carrier: "thequickbrownfoxjumpsoverthelazydog"
+- Reversible: Yes
+
+### Punctuation Encoding
+- Characters: Period (0), Comma (1)
+- Method: Binary in punctuation
+- Reversible: Yes
+
+--------------------------------------------------------------------------------
+
+## 5. EMOJI ENCODING
+
+### Emoji Alphabet
+- Mapping: a→🍎, b→🍌, c→🐱, etc.
+- Scope: a-z, 0-9, space
+- Reversible: Yes
+
+### Binary Emoji
+- Characters: ⚫ (0), ⚪ (1)
+- Method: 8-bit binary per byte
+- Reversible: Yes
+
+### Base64 Emoji
+- Start: U+1F600 (😀) + position
+- Method: Base64 chars → emoji sequence
+- Reversible: Yes
+
+### Emoji Skin Tone Steganography
+- Base: 👋
+- Tones: 🏻🏼🏽🏾🏿
+- Method: Bytes encoded in skin tone pairs
+- Reversible: Yes
+
+### Emoji Noise
+- Parameter: density (default: 0.3)
+- Method: Random emoji insertion
+- Reversible: Yes (noise removal)
+
+--------------------------------------------------------------------------------
+
+## 6. TEXT UTILITIES
+
+### Morse Code
+- Standard: International Morse
+- Output: Dots/dashes, space separators
+- Reversible: Yes
+
+### Braille
+- Modes: Alphabetic, Binary
+- Alphabetic: Letter-to-Braille mapping
+- Binary: ⠿ (1), ⠀ (0) in 8-bit groups
+- Reversible: Yes
+
+### URL Encoding
+- Standard: RFC 3986
+- Method: Percent-encoding
+- Reversible: Yes
+
+### HTML Entities
+- Types: Numeric (&#65;), Named (&amp;)
+- Scope: Special characters + non-ASCII
+- Reversible: Yes
+
+### Unicode Escape
+- Format: \uXXXX
+- Scope: Characters > U+007F
+- Reversible: Yes
+
+### Leetspeak
+- Levels: Light, Heavy
+- Light: a→4, e→3, i→1, o→0, s→5, t→7
+- Heavy: a→/-\, e→3, h→|-|, etc.
+- Reversible: Light only
+
+### Synonym Shuffle
+- Method: Random synonym substitution
+- Scope: Common words
+- Reversible: NO
+
+### Text Transforms
+- Uppercase: toLowerCase → toUpperCase
+- Lowercase: toUpperCase → toLowerCase
+- Reverse: String reversal
+- Reversible: Yes
+
+================================================================================
+                           PIPELINE SYSTEM
+================================================================================
+
+Red Converter features a pipeline-based transformation system:
+
+1. Add multiple transformations in sequence
+2. Each step processes the output of the previous step
+3. Real-time preview of intermediate results
+4. Drag-and-drop reordering
+5. Warning system for incompatible combinations
+
+Example Pipeline:
+  Input: "secret message"
+    → Base64 Encode: "c2VjcmV0IG1lc3NhZ2U="
+    → ROT13: "p2Ixcek0gIk1elNhTLu="
+    → Zero-Width Encode (carrier: "Hello!"): "H‌e‍l‌l‌o‍!"
+  Output: "Hello!" (with hidden encoded message)
+
+================================================================================
+                          ANALYSIS FEATURES
+================================================================================
+
+### Encoding Detection
+- Automatic format recognition
+- Pattern matching for common encodings
+- Suggestions for appropriate decoders
+
+### Frequency Analysis
+- Character frequency distribution
+- Useful for cryptanalysis
+
+### Brute Force Caesar
+- Tests all 26 shifts
+- Displays all possibilities
+
+### Character Statistics
+- Character count
+- Unique characters
+- Byte size
+
+================================================================================
+                         TECHNICAL DETAILS
+================================================================================
+
+Frontend Stack:
+- React 18+ with TypeScript
+- Vite build system
+- Tailwind CSS for styling
+- Framer Motion animations
+- React Query for state management
+
+PWA Features:
+- Service Worker for offline caching
+- Installable as native app
+- Push notification ready
+
+Storage:
+- IndexedDB for transformation history
+- No cookies, no tracking
+- Complete privacy
+
+Browser Support:
+- Chrome 80+
+- Firefox 75+
+- Safari 14+
+- Edge 80+
+
+================================================================================
+                        EXAMPLE INPUT/OUTPUT PAIRS
+================================================================================
+
+## Base64 Encoding
+Input:  "Hello World"
+Output: "SGVsbG8gV29ybGQ="
+
+## Base64 Decoding
+Input:  "SGVsbG8gV29ybGQ="
+Output: "Hello World"
+
+## Hexadecimal Encoding
+Input:  "Secret"
+Output: "536563726574"
+
+## Hexadecimal Decoding
+Input:  "536563726574"
+Output: "Secret"
+
+## Binary Encoding
+Input:  "Hi"
+Output: "01001000 01101001"
+
+## Binary Decoding
+Input:  "01001000 01101001"
+Output: "Hi"
+
+## ROT13 Encoding/Decoding
+Input:  "Attack at dawn"
+Output: "Nggnpx ng qnja"
+
+## Caesar Cipher (Shift 3)
+Input:  "HELLO"
+Output: "KHOOR"
+
+## Morse Code Encoding
+Input:  "SOS"
+Output: "... --- ..."
+
+## Morse Code Decoding
+Input:  "... --- ..."
+Output: "SOS"
+
+## URL Encoding
+Input:  "Hello World!"
+Output: "Hello%20World%21"
+
+## URL Decoding
+Input:  "Hello%20World%21"
+Output: "Hello World!"
+
+## Base58 Encoding
+Input:  "Bitcoin"
+Output: "4jJc4sAwPs"
+
+## Braille Encoding
+Input:  "abc"
+Output: "⠁⠃⠉"
+
+## Leetspeak Encoding
+Input:  "elite"
+Output: "3l1t3"
+
+## Zero-Width Steganography
+Input:  Secret="Hi", Carrier="Hello"
+Output: "H‌e‍l‌lo" (invisible characters embedded)
+
+## Emoji Alphabet
+Input:  "cat"
+Output: "🐱🍎🌲"
+
+## Atbash Cipher
+Input:  "HELLO"
+Output: "SVOOL"
+
+## Vigenère Cipher (Key: "KEY")
+Input:  "HELLO"
+Output: "RIJVS"
+
+================================================================================
+                              CONTACT
+================================================================================
+
+Organization: AI RedCell
+Founder: Shehan Nilukshan
+Website: https://www.airedcell.dev/
+GitHub: https://github.com/AI-RedCell/red-converter
+License: MIT - Free for personal and commercial use
+
+================================================================================

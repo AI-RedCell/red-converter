@@ -1,0 +1,20 @@
+# Security Policy for Red Converter
+# https://red-conventer.airedcell.dev/
+
+Contact: https://www.airedcell.dev/
+Expires: 2025-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://red-conventer.airedcell.dev/.well-known/security.txt
+
+# Security Information
+# Red Converter is a 100% client-side application.
+# No user data is collected, stored, or transmitted to any server.
+# All text transformations happen locally in your browser.
+
+# Reporting Security Issues
+# If you discover a security vulnerability, please report it to:
+# Website: https://www.airedcell.dev/
+# GitHub: https://github.com/AI-RedCell/red-converter/issues
+
+# Acknowledgments
+# We appreciate responsible disclosure of security issues.

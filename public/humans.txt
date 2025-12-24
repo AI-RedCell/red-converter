@@ -1,0 +1,29 @@
+/* TEAM */
+Founder & Developer: Shehan Nilukshan
+Role: Founder, Lead Developer, Designer
+Organization: AI RedCell
+Website: https://www.airedcell.dev/
+Location: Sri Lanka
+
+/* THANKS */
+Open Source Community
+React & Vite Ecosystems
+All Contributors & Users
+
+/* SITE */
+Name: Red Converter
+URL: https://red-conventer.airedcell.dev/
+Description: Advanced Text Transformation & Steganography Suite
+Version: 2.0
+Last Updated: 2024-12-24
+Language: English
+Standards: HTML5, CSS3, ES6+
+Components: React, TypeScript, Tailwind CSS, Framer Motion
+Software: Vite, Node.js
+License: MIT
+
+/* PROJECT */
+Created: 2024
+Repository: https://github.com/AI-RedCell/red-converter
+Purpose: Free text encoding, decoding, and steganography tool
+Privacy: 100% client-side processing, no data collection

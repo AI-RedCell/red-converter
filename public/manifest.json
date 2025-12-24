@@ -1,12 +1,15 @@
 {
-  "name": "Red Converter",
-  "short_name": "RedConv",
-  "description": "Advanced Text Transformation Suite - Encode, decode, and analyze with professional red-team tools",
+  "name": "Red Converter - Text Transformation Suite",
+  "short_name": "Red Converter",
+  "description": "Advanced text transformation and steganography tool with 30+ encoding algorithms. Encode, decode, and analyze text with Base64, steganography, ciphers, and more. 100% client-side, works offline.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
   "theme_color": "#dc2626",
   "orientation": "any",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/icon-192.png",
@@ -21,6 +24,43 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["utilities", "developer tools", "security"],
-  "prefer_related_applications": false
+  "shortcuts": [
+    {
+      "name": "Encode Text",
+      "short_name": "Encode",
+      "description": "Start encoding text",
+      "url": "/?mode=encode",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Decode Text",
+      "short_name": "Decode",
+      "description": "Start decoding text",
+      "url": "/?mode=decode",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Detect Encoding",
+      "short_name": "Detect",
+      "description": "Auto-detect text encoding",
+      "url": "/?mode=detect",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
+    }
+  ],
+  "categories": ["utilities", "developer", "security", "productivity"],
+  "prefer_related_applications": false,
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "screenshots": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "label": "Red Converter Main Interface"
+    }
+  ],
+  "related_applications": [],
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
 }
